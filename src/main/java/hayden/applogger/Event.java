@@ -19,5 +19,5 @@ class TransactionEventImpl implements TransactionEvent {
 	public Map<String, Object> getParams() {
 		return params;
 	}
-	
+
 }

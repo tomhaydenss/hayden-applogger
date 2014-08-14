@@ -1,7 +1,7 @@
 package hayden.applogger;
 
 import java.util.Date;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.Map;
 
 import org.apache.log4j.Logger;
@@ -69,7 +69,7 @@ public class ApplicationLogger {
 	public static class ApplicationLoggerBuilder {
 
 		private final String step;
-		private Map<String, Object> params = new LinkedHashMap<String, Object>();
+		private Map<String, Object> params = new HashMap<String, Object>();
 		private EventFormatter formatter = new JSONFormatter();
 
 		public ApplicationLoggerBuilder(String step) {
