@@ -1,19 +1,16 @@
 package hayden.applogger;
 
-enum TransactionParam {
+import java.lang.annotation.ElementType;
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
 
-	CUSTOMER, 
-	RECEIVER, 
-	AMOUNT, 
-	CC_TOKEN, 
-	CC_LAST4DIGISTS, 
-	CC_BRAND, 
-	CHANNEL, 
-	TRANSACTION_ID, 
-	TID, 
-	AUTH_CODE, 
-	NSU, 
-	DTLOG,
-	OBS
+@Target(ElementType.FIELD)
+@Retention(RetentionPolicy.RUNTIME)
+public @interface TransactionParam {
+	
+	TransactionParamType type() default TransactionParamType.CUSTOM_TYPE;
+	String customType() default "";
+	boolean required();
 
 }

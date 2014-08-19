@@ -1,8 +1,10 @@
-package hayden.applogger;
+package hayden.applogger.impl;
+
+import hayden.applogger.TransactionEvent;
 
 import java.util.Map;
 
-class TransactionEventImpl implements TransactionEvent {
+public class TransactionEventImpl implements TransactionEvent {
 
 	private String step;
 	private Map<String, Object> params;

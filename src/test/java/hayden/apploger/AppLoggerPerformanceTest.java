@@ -16,7 +16,7 @@ public class AppLoggerPerformanceTest {
 	@PerfTest(threads = 10, invocations = 10000)
 	@Required(max = 200, median = 1, totalTime = 2500)
 	public void teste1() {
-		ApplicationLogger.startTransaction().customer("5521983044044").receiver("21981073084").amount(12.35).build().log();
+		ApplicationLogger.startTransaction().customer("5521983044044").receiver("21981073084").amount(12.35).log();
 	}
 
 }

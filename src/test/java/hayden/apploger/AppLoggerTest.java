@@ -12,7 +12,6 @@ public class AppLoggerTest {
 			.customer("5521983044044")
 			.receiver("21981073084")
 			.amount(12.35)
-			.build()
 			.log();
 	}
 
@@ -24,8 +23,14 @@ public class AppLoggerTest {
 			.param("service", 202)
 			.param("paymentId", 12321312)
 			.inXMLFormat()
-			.build()
 			.log();
+	}
+	
+	@Test
+	public void deveLogarEventoAnotado() {
+		PDVRequet request = new PDVRequet("0099887766", "FFAABBCCDDEEFF", "XXXxxx", "PDV TESTE", 14.99, "21988887777");
+		ApplicationLogger.authorizeRecharge()
+		.log(request);
 	}
 	
 }
