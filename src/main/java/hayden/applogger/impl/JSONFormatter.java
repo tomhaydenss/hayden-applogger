@@ -1,12 +1,12 @@
 package hayden.applogger.impl;
 
-import hayden.applogger.EventFormatter;
-import hayden.applogger.TransactionEvent;
+import hayden.applogger.TransactionDataFormatter;
+import hayden.applogger.TransactionData;
 
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
-public class JSONFormatter implements EventFormatter {
+public class JSONFormatter implements TransactionDataFormatter {
 	
 	private static Gson gson = null; 
 	{
@@ -14,8 +14,8 @@ public class JSONFormatter implements EventFormatter {
 		gson = gsonBuilder.enableComplexMapKeySerialization().setPrettyPrinting().create();
 	}
 
-	public String format(TransactionEvent event) {
-		return gson.toJson(event);
+	public String format(TransactionData data) {
+		return gson.toJson(data);
 	}
 
 }

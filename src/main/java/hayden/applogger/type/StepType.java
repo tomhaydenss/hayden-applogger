@@ -1,6 +1,6 @@
-package hayden.applogger;
+package hayden.applogger.type;
 
-enum StepType {
+public enum StepType {
 
 	REQUEST_TRANSACTION,
 	VALIDATION_TRANSACTION,
@@ -11,6 +11,7 @@ enum StepType {
 	REFUND_PAYMENT,
 	AUTHORIZE_RECHARGE,
 	CONFIRM_RECHARGE,
-	CANCEL_RECHARGE
+	CANCEL_RECHARGE,
+	CUSTOM_STEP
 
 }

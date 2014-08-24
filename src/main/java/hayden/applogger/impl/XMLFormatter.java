@@ -1,16 +1,16 @@
 package hayden.applogger.impl;
 
-import hayden.applogger.EventFormatter;
-import hayden.applogger.TransactionEvent;
+import hayden.applogger.TransactionDataFormatter;
+import hayden.applogger.TransactionData;
 
 import com.thoughtworks.xstream.XStream;
 
-public class XMLFormatter implements EventFormatter {
+public class XMLFormatter implements TransactionDataFormatter {
 	
 	private static XStream xstream = new XStream();
 
-	public String format(TransactionEvent event) {
-		return xstream.toXML(event);
+	public String format(TransactionData data) {
+		return xstream.toXML(data);
 	}
 
 }

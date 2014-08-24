@@ -1,13 +1,20 @@
 package hayden.apploger;
 
-import org.junit.Test;
-
+import static org.junit.Assert.assertNotNull;
 import hayden.applogger.ApplicationLogger;
+
+import java.io.File;
+import java.util.HashMap;
+import java.util.Map;
+
+import javax.ejb.embeddable.EJBContainer;
+
+import org.junit.Test;
 
 public class AppLoggerTest {
 
 	@Test
-	public void deveLogarInicioTransacaoEmJSON() {
+	public void shouldLogStartTransactionInJSONFormat() {
 		ApplicationLogger.startTransaction()
 			.customer("5521983044044")
 			.receiver("21981073084")
@@ -16,7 +23,7 @@ public class AppLoggerTest {
 	}
 
 	@Test
-	public void deveLogarEventoEmXML() {
+	public void shouldLogCustomEventInXMLFormat() {
 		ApplicationLogger.step("CHARGE_BACK")
 			.customer("5521983044044")
 			.amount(12.35)
@@ -27,10 +34,27 @@ public class AppLoggerTest {
 	}
 	
 	@Test
-	public void deveLogarEventoAnotado() {
+	public void shouldLogAnAnnotatedBusinessObject() {
 		PDVRequet request = new PDVRequet("0099887766", "FFAABBCCDDEEFF", "XXXxxx", "PDV TESTE", 14.99, "21988887777");
-		ApplicationLogger.authorizeRecharge()
+		ApplicationLogger.authorizeRecharge().inCustomFormat(new ToStringFormatter())
 		.log(request);
+	}
+	
+	@Test
+	public void shouldLogByEJBInterceptor() throws Exception {
+		Map<Object, Object> properties = new HashMap<Object, Object>();
+		properties.put(EJBContainer.MODULES, new File("target/classes"));
+        EJBContainer container = EJBContainer.createEJBContainer(properties);
+        
+	    PaymentBean paymentBean = (PaymentBean)container.getContext().lookup("java:global/test-classes/PaymentBean");
+	    assertNotNull(paymentBean);
+	    
+	    paymentBean.authorize("XFABZ-FASEFA", 17.99, "201", "EXT123", "123");
+	    
+	    paymentBean.capture(new CaptureRequest("201", "EXT123"), "Nao Precisa Logar");
+	    
+	    
+	    container.close();
 	}
 	
 }

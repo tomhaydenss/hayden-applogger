@@ -1,6 +1,6 @@
-package hayden.applogger;
+package hayden.applogger.type;
 
-public enum TransactionParamType {
+public enum TransactionFieldType {
 
 	CUSTOM_TYPE,
 	CUSTOMER, 

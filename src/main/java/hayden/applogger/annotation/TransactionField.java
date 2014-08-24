@@ -1,4 +1,6 @@
-package hayden.applogger;
+package hayden.applogger.annotation;
+
+import hayden.applogger.type.TransactionFieldType;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -7,9 +9,9 @@ import java.lang.annotation.Target;
 
 @Target(ElementType.FIELD)
 @Retention(RetentionPolicy.RUNTIME)
-public @interface TransactionParam {
+public @interface TransactionField {
 	
-	TransactionParamType type() default TransactionParamType.CUSTOM_TYPE;
+	TransactionFieldType type() default TransactionFieldType.CUSTOM_TYPE;
 	String customType() default "";
 	boolean required();
 
