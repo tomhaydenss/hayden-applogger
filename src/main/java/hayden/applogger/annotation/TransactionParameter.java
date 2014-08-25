@@ -12,6 +12,6 @@ import java.lang.annotation.Target;
 public @interface TransactionParameter {
 	
 	TransactionFieldType type() default TransactionFieldType.CUSTOM_TYPE;
-	String customType() default "";
+	String customType() default "_UNDEFINED_";
 
 }

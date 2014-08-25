@@ -11,7 +11,6 @@ import hayden.applogger.type.TransactionFieldType;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 import java.lang.reflect.Method;
-import java.lang.reflect.Parameter;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -72,11 +71,11 @@ public class AnnotationUtil {
 
 				Map<String, Object> items = new HashMap<String, Object>();
 				Annotation[][] parameterAnnotations = method.getParameterAnnotations();
-				Parameter[] parameters = method.getParameters();
+				//Parameter[] parameters = method.getParameters();
 
 				int i = 0;
 				for (Annotation[] annotations : parameterAnnotations) {
-					Parameter param = parameters[i];
+					//Parameter param = parameters[i];
 
 					if (annotations.length > 0) {
 						for (Annotation annotation : annotations) {
@@ -86,8 +85,7 @@ public class AnnotationUtil {
 								if (ann.type() == TransactionFieldType.CUSTOM_TYPE) {
 									String customType = ann.customType();
 									if (customType.trim().length() == 0) {
-										System.out.println(param.isNamePresent());
-										customType = param.getName();
+										// customType = param.getName();
 									}
 									items.put(customType, paramValues[i]);
 								} else {
